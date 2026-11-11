@@ -1,0 +1,62 @@
+/* HP + MODE GELAP dasar: ukuran tombol, safe-area iPhone, tampilan layar kecil */
+/* ===== Penyesuaian HP ===== */
+html{-webkit-text-size-adjust:100%;scroll-padding-top:calc(env(safe-area-inset-top,0px) + 64px)}
+body{overflow-x:hidden;-webkit-tap-highlight-color:transparent;padding-bottom:env(safe-area-inset-bottom,0px)}
+input,button{font-size:16px}
+button,.btn,label{touch-action:manipulation}
+.hero{min-height:100vh;min-height:100svh;padding-top:calc(48px + env(safe-area-inset-top,0px))}
+
+
+
+.btn{min-height:48px}.btn.small{min-height:44px;padding:10px 20px}
+.btn:active{transform:scale(.97)}
+.row{display:flex;gap:10px;margin-top:6px}.row .btn{flex:1}
+#dreams label{display:flex;gap:12px;align-items:flex-start;padding:12px 0;border-bottom:1px solid #f3e3ea;cursor:pointer}
+#dreams label:last-child{border-bottom:0}
+#dreams input{flex:0 0 24px;width:24px;height:24px;margin:1px 0 0;accent-color:#c76b8d}
+.choices button{min-height:48px}
+.letter,.card p,.intro{overflow-wrap:anywhere}
+.photo img{aspect-ratio:1;height:auto}
+@media(max-width:600px){
+body{font-size:16px}
+main{padding:0 16px}
+section{padding:40px 0;scroll-margin-top:72px}
+.hero{padding-left:18px;padding-right:18px}
+.hero:before,.hero:after{font-size:110px}
+.eyebrow{letter-spacing:.12em}
+.hero h1{font-size:clamp(38px,13vw,56px)}
+.date{letter-spacing:.05em;font-size:12px}
+.hero .btn{width:100%;max-width:320px}
+.card{padding:16px;border-radius:18px}
+.grid{grid-template-columns:1fr}
+.gallery{grid-template-columns:repeat(2,1fr)}
+.photo{min-height:0;aspect-ratio:1}
+.photo img{height:100%}
+.timeline{margin-left:6px;padding-left:22px}
+.event:before{left:-30px}
+.letter{font-size:16px;line-height:1.8;padding:18px}
+.question{font-size:19px;min-height:0;margin:10px 0}
+.choices button{font-size:16px;padding:12px 14px}
+.card>.btn{width:100%;margin-top:10px}
+.secret{padding:26px 18px;border-radius:20px}
+#secretCode{width:100%!important;min-height:48px}
+footer{padding:44px 18px calc(44px + env(safe-area-inset-bottom,0px))}
+}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.btn{transition:none}}
+@media(prefers-color-scheme:dark){
+:root{color-scheme:dark}
+body{background:#26101a;color:#fbe7ee}
+.hero{background:linear-gradient(145deg,#3a1827,#26101a)}
+.hero:before,.hero:after{color:#c76b8d44}
+
+h2,h3,.hero h1,.question,.eyebrow,.choices button,footer{color:#f7c5d6}
+.card,.memory{background:#33151f;border-color:#5c2b41;box-shadow:none}
+.letter{background:#33151f;color:#fbe7ee}
+.photo{background:#3a1827;border-color:#7a3a55;color:#d3a0b3}
+.intro,.tiny,.date{color:#d3a0b3}
+.choices button{background:#3d1b29;border-color:#5c2b41}
+.pill,.btn.secondary{background:#4a2234;color:#f7c5d6}
+.event:before{border-color:#26101a}
+#dreams label{border-color:#4a2234}
+footer{background:#33151f}
+}

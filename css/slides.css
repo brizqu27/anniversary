@@ -1,0 +1,41 @@
+/* SLIDE: satu bagian per layar. Halaman tidak di-scroll, pindah lewat tombol, swipe, atau menu. */
+html,body{height:100%;overflow:hidden;scroll-behavior:auto}
+body{padding-bottom:0}
+.hero{position:fixed;inset:0;z-index:5;min-height:0;display:flex;overflow-x:hidden;overflow-y:auto;padding:calc(24px + env(safe-area-inset-top,0px)) 18px calc(24px + env(safe-area-inset-bottom,0px))}
+.hero-inner{margin:auto}
+body.opened .hero{display:none}
+main{position:fixed;inset:0;max-width:none;margin:0;padding:0}
+main>section{display:none;position:absolute;inset:0;margin:0;flex-direction:column;overflow-x:hidden;overflow-y:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;scroll-margin-top:0;padding:calc(68px + env(safe-area-inset-top,0px)) 18px calc(96px + env(safe-area-inset-bottom,0px))}
+main>section.active{display:flex;animation:slideIn .45s cubic-bezier(.2,.8,.2,1) both}
+main>section.active.back{animation-name:slideBack}
+main>section>*{width:100%;max-width:900px;margin-left:auto;margin-right:auto;flex-shrink:0}
+main>section>:first-child{margin-top:auto}
+main>section>:last-child{margin-bottom:auto}
+@keyframes slideIn{from{opacity:0;transform:translateX(36px)}to{opacity:1;transform:none}}
+@keyframes slideBack{from{opacity:0;transform:translateX(-36px)}to{opacity:1;transform:none}}
+/* tombol bawah, progress, menu */
+.prog{position:fixed;top:0;left:0;height:3px;width:0;background:var(--rose);transition:width .4s;z-index:31}
+.ib{position:fixed;z-index:30;top:calc(8px + env(safe-area-inset-top,0px));left:calc(12px + env(safe-area-inset-left,0px));width:44px;height:44px;border-radius:50%;border:1px solid #efd8e2;background:#fffaf2ee;color:var(--wine);font-size:20px;cursor:pointer;touch-action:manipulation}
+.mus{bottom:auto;top:calc(8px + env(safe-area-inset-top,0px));width:44px;height:44px;font-size:19px}
+.botbar{position:fixed;left:0;right:0;bottom:0;z-index:30;display:flex;align-items:center;justify-content:space-between;gap:10px;padding:18px calc(14px + env(safe-area-inset-right,0px)) calc(10px + env(safe-area-inset-bottom,0px)) calc(14px + env(safe-area-inset-left,0px));background:linear-gradient(transparent,var(--cream) 45%)}
+.nbtn{min-height:48px;min-width:104px;padding:0 18px;border-radius:99px;border:0;background:var(--wine);color:#fff;font:700 15px Arial,sans-serif;cursor:pointer;touch-action:manipulation}
+.nbtn.ghost{background:#fffaf2;color:var(--wine);border:1.5px solid #efd8e2}
+.nbtn:active{transform:scale(.96)}
+.nbtn[disabled]{opacity:.35;cursor:default;transform:none}
+.count{font:700 13px Arial,sans-serif;color:var(--muted)}
+body:not(.opened) .prog,body:not(.opened) .ib,body:not(.opened) .botbar{display:none}
+.scrim{position:fixed;inset:0;z-index:40;background:#2a101a88;opacity:0;pointer-events:none;transition:opacity .25s}
+.scrim.on{opacity:1;pointer-events:auto}
+.sheet{position:fixed;left:0;right:0;bottom:0;z-index:41;max-height:78vh;overflow-y:auto;background:#fffaf2;border-radius:24px 24px 0 0;padding:18px 16px calc(18px + env(safe-area-inset-bottom,0px));transform:translateY(100%);visibility:hidden;transition:transform .3s,visibility .3s;box-shadow:0 -12px 40px #762b4833}
+.sheet.on{transform:none;visibility:visible}
+.sheet h3{margin:0 0 8px;font-size:20px}
+.sheet button{display:flex;gap:12px;align-items:center;width:100%;min-height:48px;text-align:left;border:0;background:none;padding:8px 10px;border-radius:12px;color:var(--ink);font:600 16px Georgia,serif;cursor:pointer}
+.sheet button.cur{background:var(--pink)}
+.sheet button span{font:700 12px Arial,sans-serif;color:var(--rose);min-width:22px}
+@media(min-width:700px){.sheet{left:50%;right:auto;width:420px;transform:translate(-50%,100%)}.sheet.on{transform:translate(-50%,0)}}
+@media(prefers-reduced-motion:reduce){main>section.active{animation:none}.prog,.sheet,.scrim{transition:none}}
+@media(prefers-color-scheme:dark){
+.botbar{background:linear-gradient(transparent,#26101a 45%)}
+.ib,.nbtn.ghost,.sheet{background:#33151f;border-color:#5c2b41;color:#f7c5d6}
+.sheet button{color:#fbe7ee}.sheet button.cur{background:#4a2234}
+}
